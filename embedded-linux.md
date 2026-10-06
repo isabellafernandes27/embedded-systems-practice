@@ -725,3 +725,5 @@ The interrupt handler needs to:
 - Sleep while waiting for another resource.
 
 Which of these belong in the immediate interrupt handler, and which should be deferred?
+
+Immediately, at the hardware interrupt level, you should only need to acknowledge the interrupt and read a small status register for that interrupt status. Any complicated calcs or anything that would take a large amount of disk space and CPU, should be deferred to the linux interrupt handler.
