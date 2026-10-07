@@ -12,6 +12,10 @@
   - [ioctl()](#ioctl)
   - [Memory-Mapped I/O](#memory-mapped-io)
   - [Virtal Memory](#virtal-memory)
+  - [Kernel vs Kernel Module](#kernel-vs-kernel-module)
+    - [Linux kernel](#linux-kernel)
+    - [Kernel module](#kernel-module)
+    - [Built-in vs module](#built-in-vs-module)
   - [Processes vs Threads](#processes-vs-threads)
     - [Process](#process)
     - [Threads](#threads)
@@ -322,6 +326,54 @@ This provides:
 
 **The kernel manages the translation.**
 
+## Kernel vs Kernel Module
+
+### Linux kernel
+
+The actual operating system kernel. You might build an image or another architecture-specific kernel image.
+
+### Kernel module
+
+A piece of kernel code that can be loaded/unloaded separately.
+
+Usually: ```something.ko```
+
+```.ko``` = kernel object.
+
+You can load one with things like:
+
+```c
+insmod mydriver.ko 
+
+// OR
+
+modprobe mydriver
+```
+
+The advantage is that you don't necessarily have to rebuild the entire kernel just to add/remove a driver.
+
+### Built-in vs module
+
+A kernel feature can be:
+
+```CONFIG_FOO=y```
+
+meaning: built directly into the kernel
+
+or:
+
+```CONFIG_FOO=m```
+
+meaning: built as a loadable module
+
+or:
+
+```CONFIG_FOO is not set```
+
+meaning: disabled
+
+That's exactly what kernel configuration controls.
+
 ## Processes vs Threads
 
 ### Process
@@ -465,6 +517,9 @@ aarch64-linux-gnu-gcc
      ↓
 ARM64 binary
 ```
+
+>[!IMPORTANT]
+> Cross-compilation is about building software on a CPU architecture/platform for a different target architecture/platform.
 
 ## Example 1
 
