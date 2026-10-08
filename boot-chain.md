@@ -14,6 +14,9 @@
     - [Layer](#layer)
     - [BSP](#bsp)
     - [Image](#image)
+    - [Mirrors and Premirrors](#mirrors-and-premirrors)
+      - [PREMIRRORS](#premirrors)
+      - [MIRRORS](#mirrors)
     - [Yocto Overall](#yocto-overall)
   - [Sample Questions](#sample-questions)
 
@@ -379,6 +382,30 @@ You can customize it with your own:
 - drivers
 - configuration
 - packages
+
+### Mirrors and Premirrors
+
+Mirrors are alternate source locations BitBake can use when fetching dependencies. PREMIRRORS can redirect downloads before BitBake goes to the original source, while MIRRORS are fallback locations after the original fetch fails. They're useful for caching sources internally and making builds more reliable and reproducible.
+
+#### PREMIRRORS
+
+Try this mirror BEFORE going to the original source.
+
+Useful for companies that maintain an internal source cache so developers don't all download huge repositories from GitHub.
+
+#### MIRRORS
+
+Try the original source first.
+If that fails, try these alternatives.
+
+So conceptually:
+```text
+PREMIRRORS
+    ↓
+Original source
+    ↓
+MIRRORS
+``` 
 
 ### Yocto Overall
 

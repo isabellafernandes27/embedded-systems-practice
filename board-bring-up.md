@@ -63,5 +63,3 @@ The key principle: Get the lowest layer working before debugging the layer above
     I don't start debugging Linux because I don't know that Linux is even being reached. Summary:
 
     I'd debug from the lowest layer upward rather than immediately assuming it's a software problem. I'd first verify power, clocks, reset, and that the CPU is actually executing. Then I'd verify the bootloader and use the serial console to determine how far through the boot process we're getting. If U-Boot works but Linux doesn't, I'd investigate the kernel image, boot arguments, Device Tree, and kernel logs. Once Linux is running, I'd verify that the relevant drivers are enabled and probing correctly, then investigate Device Tree configuration and hardware communication. Finally, I'd move into userspace and debug the application-to-driver interface. The goal is to identify the first layer where behavior diverges from what we expect.
-
-2. 
